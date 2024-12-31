@@ -1,27 +1,20 @@
-# Dotsfiles!
+# Dotsfiles
 
-### How To Install
-
-#### Package required
-
-1. git
-2. stow
-
-#### install git
-
-`sudo pacman -S git`
-
-#### install stow
-
-`sudo pacman -S stow`
-
-#### installing dotsfiles
+## My Personal nixos configuration
 
 > [!WARNING]
-> Remember to backup folder before installing
+> make sure [hardware-configuration.nix](./hosts/shizuka/hardware-configuration.nix) are always same the current computer
 
-```sh
-git clone --depth 1 https://github.com/DinkyTrady/dots.git
-cd ./dots
-stow .
+### How to use it
+
+make sure to clone it in home directory
+and u have stow
+
+```bash
+git clone -b nixos --depth=1 https://github.com/DinkyTrady/dots ./newdots
+
+cd newdots && stow .
+
+# rebuild
+sudo nixos-rebuild switch --flake .#shizuka --show-trace
 ```

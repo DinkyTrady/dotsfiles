@@ -1,0 +1,10 @@
+[general]
+# fullscreen = true
+early-exit = true
+copy-command = "wl-copy"
+save-after-copy = true
+disable-notifications = true
+
+[font]
+family = "Droid Sans"
+style = "Regular"
