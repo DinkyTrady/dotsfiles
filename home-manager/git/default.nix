@@ -1,4 +1,4 @@
-{ }:
+{ ... }:
 {
   programs = {
     git = {
@@ -8,7 +8,10 @@
       userEmail = "DinkyTrady@kyra.com";
       extraConfig = {
         init = {
-          defaultBranch = "main";
+          defaultBranch = [
+            "main"
+            "master"
+          ];
         };
       };
     };

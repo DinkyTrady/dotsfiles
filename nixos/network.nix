@@ -1,7 +1,7 @@
-{ }:
+{ ... }:
 {
   networking = {
-    hostname = "shizuka";
+    hostName = "shizuka";
     networkmanager.enable = true;
   };
 }

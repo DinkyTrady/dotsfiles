@@ -20,13 +20,13 @@ require("lazy").setup({
     { import = "lazyvim.plugins.extras.lang.nix" },
     { import = "lazyvim.plugins.extras.lang.sql" },
     { import = "lazyvim.plugins.extras.lang.typescript" },
-    { import = "lazyvim.plugins.extras.lang.toml" },
+    { import = "lazyvim.plugins.extras.lang.rust" },
     { import = "lazyvim.plugins.extras.lang.toml" },
     { import = "lazyvim.plugins.extras.linting.eslint" },
     { import = "lazyvim.plugins.extras.formatting.prettier" },
     { import = "lazyvim.plugins.extras.ui.mini-indentscope" },
     -- not used it since it not best for now
-    -- { import = "lazyvim.plugins.extras.coding.blink" },
+    { import = "lazyvim.plugins.extras.coding.blink" },
     { import = "lazyvim.plugins.extras.coding.luasnip" },
     { import = "lazyvim.plugins.extras.coding.mini-surround" },
     { import = "lazyvim.plugins.extras.editor.mini-files" },
@@ -43,12 +43,12 @@ require("lazy").setup({
     { "jay-babu/mason-nvim-dap.nvim", enabled = false },
     { "williamboman/mason.nvim", enabled = false },
     { "nvim-telescope/telescope-fzf-native-nvim", enabled = false },
-    {
-      "nvim-treesitter/nvim-treesitter",
-      opts = function(_, opts)
-        opts.ensure_installed = {}
-      end,
-    },
+    -- {
+    --   "nvim-treesitter/nvim-treesitter",
+    --   opts = function(_, opts)
+    --     opts.ensure_installed = {}
+    --   end,
+    -- },
   },
   defaults = {
     -- By default, only LazyVim plugins will be lazy-loaded. Your custom plugins will load during startup.

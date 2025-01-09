@@ -1,7 +1,35 @@
 return {
   {
-    "hrsh7th/nvim-cmp",
+    "saghen/blink.cmp",
     enabled = true,
+    ---@module 'blink-cmp'
+    ---@type blink.cmp.Config
+    opts = {
+      completion = {
+        documentation = { auto_show_delay_ms = 100 },
+      },
+      keymap = {
+        preset = "none",
+        -- tab for snippet
+        ["<Tab>"] = { "select_next", "snippet_forward", "fallback" },
+        ["<S-Tab>"] = { "select_prev", "snippet_backward", "fallback" },
+
+        -- completion window
+        ["<C-n>"] = { "show", "show_documentation", "fallback" },
+        ["<C-e>"] = { "hide", "hide_documentation" },
+
+        -- accept
+        ["<CR>"] = { "select_and_accept", "fallback" },
+
+        -- documentation
+        ["<A-b>"] = { "scroll_documentation_up", "fallback" },
+        ["<A-f>"] = { "scroll_documentation_down", "fallback" },
+      },
+    },
+  },
+  {
+    "hrsh7th/nvim-cmp",
+    -- enabled = true,
     dependencies = { "hrsh7th/cmp-nvim-lsp-signature-help" },
     ---@param opts cmp.ConfigSchema
     opts = function(_, opts)

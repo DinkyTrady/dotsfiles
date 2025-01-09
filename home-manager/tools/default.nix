@@ -1,4 +1,4 @@
-{ config }:
+{ config, pkgs, ... }:
 {
   programs = {
     eza = {
@@ -6,6 +6,12 @@
       enableFishIntegration = true;
       git = true;
       icons = "always";
+      extraOptions = [
+        "--group-directories-first"
+      ];
+    };
+    fzf = {
+      enable = true;
     };
     fd = {
       enable = true;
@@ -20,11 +26,20 @@
         ".nix-*"
       ];
     };
+    jq.enable = true;
+    ripgrep.enable = true;
     wlogout.enable = true;
     zoxide = {
       enable = true;
       enableFishIntegration = true;
     };
-    jq.enable = true;
+    hyprlock.enable = true;
   };
+  home.packages = with pkgs; [
+    brightnessctl
+    tela-icon-theme
+
+    # screenshot
+    grimblast
+  ];
 }

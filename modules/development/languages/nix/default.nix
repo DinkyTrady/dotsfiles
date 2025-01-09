@@ -1,6 +1,6 @@
 { pkgs, ... }:
 {
-  environtment.systemPackages = with pkgs; [
+  environment.systemPackages = with pkgs; [
     nil
     nixd
     nixfmt-rfc-style

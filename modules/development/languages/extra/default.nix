@@ -1,6 +1,6 @@
-{ pkgs }:
+{ pkgs, ... }:
 {
-  environtment.systemPackages = with pkgs; [
+  environment.systemPackages = with pkgs; [
     hyprlang
 
     sqlfluff

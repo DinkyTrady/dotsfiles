@@ -1,6 +1,7 @@
-{ }:
+{ ... }:
 {
   imports = [
+    ./bluetooth.nix
     ./programs.nix
     ./services.nix
     ./stylix.nix
@@ -11,5 +12,6 @@
     ./boot.nix
     ./network.nix
     ./time.nix
+    ./fonts.nix
   ];
 }

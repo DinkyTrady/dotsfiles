@@ -1,10 +1,11 @@
 { pkgs, ... }:
 {
-  environtment.systemPackages = with pkgs; [
+  environment.systemPackages = with pkgs; [
     vscode-langservers-extracted
-    prettierd
+    nodePackages.prettier
 
     marksman
     markdownlint-cli2
+    markdown-oxide
   ];
 }

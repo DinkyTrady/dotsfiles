@@ -1,5 +1,5 @@
 {
-  inputs,
+  pkgs,
   ...
 }:
 {
@@ -8,30 +8,16 @@
     ./hardware-configuration.nix
     ./home.nix
     ../../modules/users/kyra
+    ../../modules/development/virtualisation
   ];
 
   user.enable = true;
 
-  home-manager = {
-    extraSpecialArgs = {
-      inherit inputs;
-    };
-    users = {
-      "kyra" = import ./home.nix;
-    };
-    sharedModules = [
-      {
-        nixpkgs.overlays = [
-          inputs.hyprpanel.overlay
-        ];
-      }
-      {
-        stylix.targets.neovim.enable = false;
-        stylix.targets.foot.enable = false;
-        stylix.targets.alacritty.enable = false;
-      }
-    ];
+  i18n.defaultLocale = "en_US.UTF-8";
+
+  environment.sessionVariables = {
+    FLAKE = "/home/kyra/newdots";
   };
 
-  system.stateVersion = "24.11"; # Did you read the comment? Y
+  system.stateVersion = "24.05"; # Did you read the comment? Y
 }

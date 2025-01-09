@@ -4,9 +4,11 @@
     ./nix
     ./java
     ./lua
-    ./js # js
+    ./javascript # js
     ./c # lang
     ./rust
     ./web
+    ./extra
+    ./shell
   ];
 }

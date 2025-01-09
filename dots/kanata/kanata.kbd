@@ -1,15 +1,16 @@
 (defsrc
-  esc caps ; s '
+  esc caps a s ; '
 ) 
 
 (defalias
   capsesc (tap-hold 100 100 caps esc)
   escctrl (tap-hold-release 100 150 esc lctrl)
-  ; (tap-hold 100 150 ; rmet)
   s (tap-hold-release 100 150 s lshift )
+  a (tap-hold-release 100 250 a lalt )
+  ; (tap-hold 100 150 ; rmet)
   ' (tap-hold-release 100 150 ' rctrl )
 )
 
 (deflayer base
-  @capsesc @escctrl @; @s @'
+  @capsesc @escctrl @a @s @; @'
 )

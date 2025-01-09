@@ -1,6 +1,6 @@
 { pkgs, ... }:
 {
-  environtment.systemPackages = with pkgs; [
+  environment.systemPackages = with pkgs; [
     typescript
     eslint
   ];

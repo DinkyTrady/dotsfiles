@@ -21,8 +21,8 @@ capabilites.textDocument.completion.completionItem = {
   },
 }
 
-capabilites = require("cmp_nvim_lsp").default_capabilities(capabilites)
--- capabilites = require("blink-cmp").get_lsp_capabilities(capabilites)
+-- capabilites = require("cmp_nvim_lsp").default_capabilities(capabilites)
+capabilites = require("blink-cmp").get_lsp_capabilities()
 
 local config = {
   cmd = {

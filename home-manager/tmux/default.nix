@@ -1,35 +1,45 @@
-{ pkgs }:
+{ pkgs, ... }:
 {
   programs.tmux = {
     enable = true;
-    terminal = "screen-256color";
+    terminal = "xterm-256color";
     keyMode = "vi";
     mouse = true;
-    newSession = true;
-    shortcut = "Space";
+    # newSession = true;
+    prefix = "C-Space";
     # tmuxinator = true;
-    extraConfig = ''
-      # for 256 color support
-      set-option -ga terminal-overrides ",xterm-256color:Tc"
-      set-option -sg escape-time 10
+    # tmuxp = true;
+    escapeTime = 0;
+    extraConfig = # tmux
+      ''
+        # for 256 color support
+        set -ag terminal-overrides ",xterm-256color:Tc"
 
-      # move window like neovim
-      bind h select-pane -L
-      bind j select-pane -D
-      bind l select-pane -R
-      bind k select-pane -U
-
-      # goes to visual mode
-      bind-key -T copy-mode-vi v send-keys -X begin-selection
-      bind-key -T copy-mode-vi C-v send-keys -X rectangle-toggle
-      bind-key -T copy-mode-vi y send-keys -X copy-selection-and-cancel
-    '';
+        # goes to visual mode
+        bind-key -T copy-mode-vi v send-keys -X begin-selection
+        bind-key -T copy-mode-vi C-v send-keys -X rectangle-toggle
+        bind-key -T copy-mode-vi y send-keys -X copy-selection-and-cancel
+      '';
     plugins = with pkgs.tmuxPlugins; [
       cpu
+      sessionist
+      resurrect
       {
         plugin = tmux-fzf;
         extraConfig = ''
-          set -g @plugin 'sainnhe/tmux-fzf'
+          TMUX_FZF_OPTIONS="-p 85% -m"
+          # sessions
+          bind s run-shell -b "${tmux-fzf}/share/tmux-plugins/tmux-fzf/scripts/session.sh" # switch menu
+
+          # window
+          bind w run-shell -b "${tmux-fzf}/share/tmux-plugins/tmux-fzf/scripts/window.sh" # window menu
+          bind f run-shell -b "${tmux-fzf}/share/tmux-plugins/tmux-fzf/scripts/window.sh switch" # switch window
+        '';
+      }
+      {
+        plugin = pain-control;
+        extraConfig = ''
+          set -g @pane-resize "10"
         '';
       }
       {
@@ -39,16 +49,19 @@
         '';
       }
       {
-        plugin = resurrect;
-        extraConfig = "set -g @resurrect-strategy-nvim 'session'";
-      }
-      {
         plugin = continuum;
         extraConfig = ''
           set -g @continuum-restore 'on'
           set -g @continuum-save-interval '60' # minutes
         '';
       }
+      # {
+      #   plugin = tilish;
+      #   extraConfig = ''
+      #     set -g @tilish-navigate 'on'
+      #     set -g @tilish-default 'main-vertical'
+      #   '';
+      # }
     ];
   };
 }

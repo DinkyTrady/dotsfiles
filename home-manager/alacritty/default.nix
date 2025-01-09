@@ -1,10 +1,10 @@
-{ config }:
+{ config, ... }:
 {
   programs.alacritty = {
-    enable = false;
+    enable = true;
   };
-  xdg.configFile.alacritty = {
+  xdg.configFile."alacritty" = {
     source = config.lib.file.mkOutOfStoreSymlink "/home/kyra/newdots/dots/alacritty";
-    recurisve = true;
+    recursive = true;
   };
 }

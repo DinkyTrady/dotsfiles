@@ -1,6 +1,6 @@
-{ pkgs }:
+{ pkgs, ... }:
 {
-  environtment.systemPackages = with pkgs; [
+  environment.systemPackages = with pkgs; [
     temurin-bin
 
     (gradle.override { java = temurin-bin; }) # not used maybe

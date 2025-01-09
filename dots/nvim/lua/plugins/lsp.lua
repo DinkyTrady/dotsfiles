@@ -7,6 +7,8 @@ return {
     end,
     opts = {
       servers = {
+        html = {},
+        cssls = {},
         nixd = {},
         nil_ls = {
           settings = {
@@ -25,6 +27,11 @@ return {
         end,
       },
     },
+  },
+  {
+    "jmbuhr/otter.nvim",
+    event = "LazyFile",
+    opts = {},
   },
   {
     "j-hui/fidget.nvim",

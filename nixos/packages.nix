@@ -1,12 +1,13 @@
-{ pkgs }:
+{ pkgs, ... }:
 {
-  environtment.SystemPackages = with pkgs; [
+  imports = [
+    ../modules/development/languages
+  ];
+  environment.systemPackages = with pkgs; [
     killall
     pciutils
 
     wget
-
-    noto-fonts-cjk
 
     lenovo-legion
 

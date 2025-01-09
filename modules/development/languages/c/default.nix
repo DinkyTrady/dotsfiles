@@ -1,9 +1,11 @@
 { pkgs, ... }:
 {
-  environtment.systemPackages = with pkgs; [
+  environment.systemPackages = with pkgs; [
     gcc # dunno
     clang # dunno
     clang-tools
-    vscode-extensions.vadimcn.vscode-lldb
+
+    lldb
+    # vscode-extensions.vadimcn.vscode-lldb
   ];
 }

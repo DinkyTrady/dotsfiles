@@ -1,24 +1,23 @@
-{ pkgs }:
+{ pkgs, ... }:
 
 let
-  pkgsFetch = pkgs.fetchFromGitHub;
+  fetch = pkgs.fetchFromGitHub;
 in
 {
   programs.fish = {
     enable = true;
-    interactiveShellInit = ''
-      set fish_greeting
+    interactiveShellInit = # fish
+      ''
+        set fish_greeting
 
-      enable_transience
+        # enable_transience
 
-      set -Ux CARGO_HOME ~/DevPkg/.cargo
-
-      fish_add_path ~/DevPkg/.npm/bin
-    '';
+        fish_add_path ~/DevPkg/.npm/bin
+      '';
     plugins = [
       {
         name = "fzf";
-        src = pkgsFetch {
+        src = fetch {
           owner = "PatrickF1";
           repo = "fzf.fish";
           rev = "8920367cf85eee5218cc25a11e209d46e2591e7a";
@@ -27,7 +26,7 @@ in
       }
       {
         name = "autopair";
-        src = pkgsFetch {
+        src = fetch {
           owner = "jorgebucaran";
           repo = "autopair.fish";
           rev = "4d1752ff5b39819ab58d7337c69220342e9de0e2";
@@ -46,7 +45,7 @@ in
       # }
       {
         name = "spoonge.fish";
-        src = pkgsFetch {
+        src = fetch {
           owner = "meaningful-ooo";
           repo = "sponge";
           rev = "384299545104d5256648cee9d8b117aaa9a6d7be";

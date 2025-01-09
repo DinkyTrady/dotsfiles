@@ -1,19 +1,35 @@
-{ pkgs }:
+{ pkgs, lib, ... }:
 {
   services = {
     # enabling x11
     xserver = {
       enable = true;
       excludePackages = [ pkgs.xterm ];
+      videoDrivers = [ "nvidia" ];
+    };
+
+    greetd = {
+      enable = true;
+      settings = {
+        default_session = {
+          command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --time-format '%I:%M %p | %a . %h | %F' --cmd Hyprland";
+          user = "greeter";
+        };
+        initial_session = {
+          command = "Hyprland";
+          user = "kyra";
+        };
+      };
     };
 
     # display manager for login
     displayManager = {
-      enable = true;
-      defaultSessions = "hyprland"; # set default sessions to hyprland
+      enable = lib.mkDefault false;
+      defaultSession = "hyprland"; # set default sessions to hyprland
       ly = {
         enable = false;
       };
+      # not working i dunno why
       sddm = {
         enable = true;
         wayland = {
@@ -36,7 +52,7 @@
     kanata = {
       enable = true;
       keyboards.internalKeyboard = {
-        configFile = ../../dots/kanata/kanata.kbd;
+        configFile = ../dots/kanata/kanata.kbd;
       };
     };
 

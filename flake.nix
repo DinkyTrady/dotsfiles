@@ -20,8 +20,19 @@
     };
 
     # Not used since i don't know how to overlay it
-    # hyprpanel = {
-    #   url = "github:Jas-SinghFSU/HyprPanel";
+    hyprpanel = {
+      url = "github:Jas-SinghFSU/HyprPanel";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    nix-on-droid = {
+      url = "github:nix-community/nix-on-droid";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.home-manager.follows = "home-manager";
+    };
+
+    # ghostty = {
+    #   url = "github:ghostty-org/ghostty";
     #   inputs.nixpkgs.follows = "nixpkgs";
     # };
 
@@ -30,19 +41,30 @@
     #   url = "github:catppuccin/nix";
     #   inputs.nixpkgs.follows = "nixpkgs";
     # };
+
+    # wezterm
+    wezterm = {
+      url = "github:wez/wezterm?dir=nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
     {
       self,
       nixpkgs,
+      home-manager,
       ...
     }@inputs:
     let
-      system = "x86_64-linux";
+      system = [
+        "x86_64-linux"
+        "aarch64-linux"
+      ];
       pkgs = nixpkgs.legacyPackagages.${system};
     in
     {
+      # default nixos
       nixosConfigurations = {
         shizuka = nixpkgs.lib.nixosSystem {
           specialArgs = {
@@ -54,6 +76,11 @@
             inputs.stylix.nixosModules.stylix
           ];
         };
+      };
+
+      # nix-on-droid config
+      nixOnDroidConfigurations.default = inputs.nix-on-droid.lib.nixOnDroidConfiguration {
+        modules = [ ./hosts/nix-droid/configuration.nix ];
       };
     };
 }
