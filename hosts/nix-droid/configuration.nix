@@ -54,7 +54,7 @@
     sharedModules = [
       {
         nixpkgs.overlays = [
-          inputs.hyprpanel.overlay
+          inputs.nix-on-droid.overlays.default
         ];
       }
     ];
