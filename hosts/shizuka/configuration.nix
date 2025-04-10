@@ -1,5 +1,5 @@
 {
-  pkgs,
+  inputs,
   ...
 }:
 {
@@ -18,6 +18,19 @@
   environment.sessionVariables = {
     FLAKE = "/home/kyra/newdots";
   };
+
+  fileSystems."/MediaDisk/windows" = {
+    device = "/dev/nvme0n1p3";
+    fsType = "ntfs-3g";
+    options = [
+      "rw"
+      "uid=1000"
+    ];
+  };
+
+  nixpkgs.overlays = [
+    inputs.fjordlauncher.overlays.default
+  ];
 
   system.stateVersion = "24.05"; # Did you read the comment? Y
 }

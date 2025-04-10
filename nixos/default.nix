@@ -13,5 +13,8 @@
     ./network.nix
     ./time.nix
     ./fonts.nix
+    ./kanata.nix
+
+    ../modules/desktops/de
   ];
 }

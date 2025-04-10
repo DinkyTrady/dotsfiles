@@ -5,7 +5,8 @@
     clang # dunno
     clang-tools
 
-    lldb
+    gnumake
+    cmake
     # vscode-extensions.vadimcn.vscode-lldb
   ];
 }

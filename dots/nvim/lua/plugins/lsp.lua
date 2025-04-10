@@ -7,6 +7,7 @@ return {
     end,
     opts = {
       servers = {
+        pylsp = {},
         html = {},
         cssls = {},
         nixd = {},

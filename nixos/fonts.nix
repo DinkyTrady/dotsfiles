@@ -17,13 +17,11 @@
           "DejaVu Serif Mono"
         ];
         serif = lib.mkForce [
-          "NotoSerif Nerd Font"
-          "NotoSerif"
+          "JetBrainsMono Nerd Font"
           "DejaVu Serif"
         ];
         sansSerif = lib.mkForce [
-          "NotoSans Nerd Font"
-          "NotoSans"
+          "JetBrainsMono Nerd Font"
           "DejaVu Sans"
         ];
         emoji = lib.mkForce [ "Noto Color Emoji" ];
@@ -36,10 +34,7 @@
       noto-fonts-cjk-sans
       dejavu_fonts
 
-      font-awesome
-
       # nerdfonts
-      nerd-fonts.noto
       nerd-fonts.jetbrains-mono
     ];
     fontDir.enable = true;

@@ -22,7 +22,7 @@ return {
         ["<CR>"] = { "select_and_accept", "fallback" },
 
         -- documentation
-        ["<A-b>"] = { "scroll_documentation_up", "fallback" },
+        ["<A-u>"] = { "scroll_documentation_up", "fallback" },
         ["<A-f>"] = { "scroll_documentation_down", "fallback" },
       },
     },

@@ -1,10 +1,14 @@
 { pkgs, ... }:
 {
   environment.systemPackages = with pkgs; [
+    (fenix.minimal.withComponents [
+      "cargo"
+      # "clippy"
+      # "rustfmt"
+      "rustc"
+    ])
     rust-analyzer
     rustfmt
-    rustc
-    cargo
 
     # toml file
     taplo

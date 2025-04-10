@@ -1,4 +1,4 @@
-{ ... }:
+{ inputs, ... }:
 {
   nix.optimise.automatic = true;
   nix.settings = {
@@ -9,5 +9,10 @@
     ];
   };
 
-  nixpkgs.config.allowUnfree = true;
+  nixpkgs = {
+    config.allowUnfree = true;
+    overlays = [
+      inputs.fenix.overlays.default
+    ];
+  };
 }

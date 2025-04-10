@@ -13,11 +13,11 @@
       inherit inputs;
     };
     sharedModules = [
-      {
-        nixpkgs.overlays = [
-          inputs.hyprpanel.overlay
-        ];
-      }
+      # {
+      #   nixpkgs.overlays = [
+      #     inputs.fjordlauncher.overlays.default
+      #   ];
+      # }
       {
         stylix.targets.alacritty.enable = false;
         stylix.targets.foot.enable = false;
@@ -28,6 +28,7 @@
         stylix.targets.wezterm.enable = false;
         stylix.targets.waybar.enable = false;
         stylix.targets.yazi.enable = false;
+        stylix.targets.qt.platform = "kde";
       }
     ];
   };

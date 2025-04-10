@@ -1,16 +1,20 @@
-{ config, lib, ... }:
+{ pkgs, lib, ... }:
 {
+  services.xserver.videoDrivers = [ "nvidia" ];
+
   hardware = {
-    graphics.enable = true;
+    graphics = {
+      enable = true;
+      # enable32Bit = true;
+    };
 
     nvidia = {
       open = false;
-      package = config.boot.kernelPackages.nvidiaPackages.latest;
+      package = pkgs.linuxPackages_zen.nvidiaPackages.latest;
 
       modesetting.enable = true;
       powerManagement.enable = true;
       nvidiaSettings = true;
-      gsp.enable = true;
 
       prime = {
         offload = {

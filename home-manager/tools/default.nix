@@ -1,6 +1,12 @@
-{ config, pkgs, ... }:
+{
+  config,
+  home-manager,
+  pkgs,
+  ...
+}:
 {
   programs = {
+    cmus.enable = true;
     eza = {
       enable = true;
       enableFishIntegration = true;
@@ -10,9 +16,7 @@
         "--group-directories-first"
       ];
     };
-    fzf = {
-      enable = true;
-    };
+    fzf.enable = true;
     fd = {
       enable = true;
       extraOptions = [
@@ -27,6 +31,35 @@
       ];
     };
     jq.enable = true;
+    ncmpcpp = {
+      enable = true;
+      package = (pkgs.ncmpcpp.override { visualizerSupport = true; });
+      bindings = [
+        {
+          key = "j";
+          command = "scroll_down";
+        }
+        {
+          key = "k";
+          command = "scroll_up";
+        }
+        {
+          key = "J";
+          command = [
+            "select_item"
+            "scroll_down"
+          ];
+        }
+        {
+          key = "K";
+          command = [
+            "select_item"
+            "scroll_up"
+          ];
+        }
+      ];
+      mpdMusicDir = "~/Music";
+    };
     ripgrep.enable = true;
     wlogout.enable = true;
     zoxide = {
@@ -41,5 +74,11 @@
 
     # screenshot
     grimblast
+
+    mpd
   ];
+  services.mpd = {
+    enable = true;
+    musicDirectory = "${config.xdg.userDirs.music}";
+  };
 }

@@ -12,14 +12,18 @@
 
     # GUI apps
     ./desktops-apps/jetbrains
-    ./desktops-apps/netbeans
+    # ./desktops-apps/netbeans
     ./desktops-apps/obs-studio
     ./desktops-apps/pavucontrol.nix
+    ./desktops-apps/waydroid
+    ./desktops-apps/zoom.nix
+    ## Games
+    ./desktops-apps/minecraf
 
     ./alacritty
-    ./foot
+    # ./foot
     ./kitty
-    ./ghostty
+    # ./ghostty
     # ./wezterm
 
     ./neovim
@@ -70,7 +74,7 @@
       alsa-utils
 
       # displays
-      nwg-displays
+      # nwg-displays
 
       # clipboad
       wl-clipboard-rs

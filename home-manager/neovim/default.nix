@@ -23,6 +23,8 @@ in
     enable = true;
     viAlias = true;
     vimAlias = true;
+    withPython3 = false;
+    withRuby = false;
   };
   xdg.configFile."nvim" = {
     recursive = true;

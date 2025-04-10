@@ -20,7 +20,7 @@ and u have stow
 ```bash
 git clone -b nixos --depth=1 https://github.com/DinkyTrady/dots ./newdots
 
-cd newdots && stow .
+#cd newdots && stow .
 
 # rebuild for nixos
 sudo nixos-rebuild switch --flake .#shizuka --show-trace -L -v

@@ -13,13 +13,16 @@
             "master"
           ];
         };
+        pull = {
+          rebase = false;
+        };
       };
     };
     gh = {
       enable = true;
     };
     gh-dash = {
-      enable = true;
+      enable = false;
     };
     lazygit = {
       enable = true;

@@ -19,32 +19,15 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # Not used since i don't know how to overlay it
-    hyprpanel = {
-      url = "github:Jas-SinghFSU/HyprPanel";
+    # rust-nightly
+    fenix = {
+      url = "github:nix-community/fenix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    nix-on-droid = {
-      url = "github:nix-community/nix-on-droid";
-      inputs.nixpkgs.follows = "nixpkgs";
-      inputs.home-manager.follows = "home-manager";
-    };
-
-    # ghostty = {
-    #   url = "github:ghostty-org/ghostty";
-    #   inputs.nixpkgs.follows = "nixpkgs";
-    # };
-
-    # will use soon "maybe"
-    # catppuccin-nix = {
-    #   url = "github:catppuccin/nix";
-    #   inputs.nixpkgs.follows = "nixpkgs";
-    # };
-
-    # wezterm
-    wezterm = {
-      url = "github:wez/wezterm?dir=nix";
+    # minecraf
+    fjordlauncher = {
+      url = "github:/hero-persson/FjordLauncherUnlocked";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
@@ -53,7 +36,6 @@
     {
       self,
       nixpkgs,
-      home-manager,
       ...
     }@inputs:
     let
@@ -76,11 +58,6 @@
             inputs.stylix.nixosModules.stylix
           ];
         };
-      };
-
-      # nix-on-droid config
-      nixOnDroidConfigurations.default = inputs.nix-on-droid.lib.nixOnDroidConfiguration {
-        modules = [ ./hosts/nix-droid/configuration.nix ];
       };
     };
 }

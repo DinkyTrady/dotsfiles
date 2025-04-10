@@ -1,7 +1,7 @@
 { config, ... }:
 {
   programs.alacritty = {
-    enable = true;
+    enable = false;
   };
   xdg.configFile."alacritty" = {
     source = config.lib.file.mkOutOfStoreSymlink "/home/kyra/newdots/dots/alacritty";

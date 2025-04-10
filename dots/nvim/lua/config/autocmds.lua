@@ -9,6 +9,8 @@ end
 autocmd("LspAttach", {
   callback = function()
     require("config.lsp-settings")
+    vim.api.nvim_set_hl(0, "LspReferenceRead", { bg = "#303030", link = nil })
+    vim.api.nvim_set_hl(0, "LspReferenceText", { bg = "#303030", link = nil })
   end,
 })
 

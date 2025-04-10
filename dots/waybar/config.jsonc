@@ -6,8 +6,13 @@
   // "width": 1280, // Waybar width
   "spacing": 4, // Gaps between modules (4px)
   // Choose the order of the modules
-  "modules-left": ["hyprland/workspaces", "hyprland/scratchpad"],
-  "modules-center": ["hyprland/window"],
+  "modules-left": [
+    "custom/power",
+    "hyprland/workspaces"
+  ],
+  "modules-center": [
+    "tray"
+  ],
   "modules-right": [
     "bluetooth",
     "idle_inhibitor",
@@ -22,8 +27,6 @@
     "battery",
     "battery#bat2",
     "clock",
-    "tray",
-    "custom/power",
   ],
   // Modules configuration
   "hyprland/workspaces": {
@@ -43,11 +46,11 @@
     },
   },
   "mpd": {
-    "format": "{stateIcon} {consumeIcon}{randomIcon}{repeatIcon}{singleIcon}{artist} - {album} - {title} ({elapsedTime:%M:%S}/{totalTime:%M:%S}) ⸨{songPosition}|{queueLength}⸩ {volume}% ",
+    "format": "{stateIcon} {consumeIcon}{randomIcon}{repeatIcon}{singleIcon}{artist} - {title} ({elapsedTime:%M:%S}/{totalTime:%M:%S}) {volume}% ",
     "format-disconnected": "Disconnected ",
     "format-stopped": "{consumeIcon}{randomIcon}{repeatIcon}{singleIcon}Stopped ",
     "unknown-tag": "N/A",
-    "interval": 5,
+    "interval": 1,
     "consume-icons": {
       "on": " ",
     },
@@ -120,7 +123,17 @@
   },
   "backlight": {
     "format": " {percent}% {icon}",
-    "format-icons": [" ", " ", " ", " ", "", " ", " ", " ", " "],
+    "format-icons": [
+      " ",
+      " ",
+      " ",
+      " ",
+      "",
+      " ",
+      " ",
+      " ",
+      " "
+    ],
   },
   "battery": {
     "states": {
@@ -135,7 +148,13 @@
     "format-alt": " {time} {icon}",
     // "format-good": "", // An empty format will hide the module
     // "format-full": "",
-    "format-icons": [" ", " ", " ", " ", " "],
+    "format-icons": [
+      " ",
+      " ",
+      " ",
+      " ",
+      " "
+    ],
   },
   "battery#bat2": {
     "bat": "BAT2",
@@ -172,7 +191,11 @@
       "headphone": " ",
       // "hands-free": "",
       "headset": "󰋎 ",
-      "default": ["", " ", " "],
+      "default": [
+        "",
+        " ",
+        " "
+      ],
     },
     "on-click": "pavucontrol",
   },

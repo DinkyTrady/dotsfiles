@@ -1,5 +1,9 @@
 { pkgs, ... }:
 {
+  home.packages = with pkgs; [
+    typescript
+    typescript-language-server
+  ];
   programs.helix = {
     enable = true;
 
@@ -42,6 +46,12 @@
           display-messages = true;
           display-inlay-hints = true;
         };
+
+        end-of-line-diagnostics = "hint";
+        inline-diagnostics = {
+          cursor-line = "error";
+          other-lines = "warning";
+        };
       };
     };
 
@@ -57,6 +67,30 @@
           name = "nix";
           auto-format = true;
           formatter.command = "${pkgs.nixfmt-rfc-style}/bin/nixfmt";
+        }
+
+        # typescript
+        {
+          name = "javascript";
+          auto-format = true;
+          formatter = {
+            command = "${pkgs.nodePackages.prettier}/bin/prettier";
+            args = [
+              "--parser"
+              "typescript"
+            ];
+          };
+        }
+        {
+          name = "typescript";
+          auto-format = true;
+          formatter = {
+            command = "${pkgs.nodePackages.prettier}/bin/prettier";
+            args = [
+              "--parser"
+              "typescript"
+            ];
+          };
         }
       ];
     };
