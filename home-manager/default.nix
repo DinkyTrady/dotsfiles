@@ -11,23 +11,26 @@
     ../modules/desktops/wm
 
     # GUI apps
+    # ./desktops-apps/firefox
     ./desktops-apps/jetbrains
     # ./desktops-apps/netbeans
     ./desktops-apps/obs-studio
     ./desktops-apps/pavucontrol.nix
     ./desktops-apps/waydroid
     ./desktops-apps/zoom.nix
+
     ## Games
-    ./desktops-apps/minecraf
+    # ./desktops-apps/minecraf
 
+    ## Terminal
     ./alacritty
-    # ./foot
     ./kitty
-    # ./ghostty
-    # ./wezterm
 
+    ## code editor
     ./neovim
     ./helix
+
+    ./direnv
 
     ./rofi
     ./nh
@@ -57,7 +60,12 @@
       satty
 
       # browser
-      microsoft-edge
+      inputs.zen-browser.packages."${system}".default
+
+      # Editing
+      # kdePackages.kdenlive
+      # gimp3
+      inkscape
 
       # chatters
       vesktop
@@ -69,6 +77,7 @@
 
       #hmm
       poppler
+      obsidian
 
       # sound
       alsa-utils
@@ -92,6 +101,7 @@
       JDTLS = "${pkgs.jdt-language-server}";
       RUSTUP_HOME = "/home/kyra/DevPkg/.rustup";
       CARGO_HOME = "/home/kyra/DevPkg/.cargo";
+      BUN_INSTALL_CACHE_DIR = "/home/kyra/DevPkg/.bun";
     };
   };
   programs.home-manager.enable = true;

@@ -1,4 +1,4 @@
-{ ... }:
+{ pkgs, ... }:
 {
   programs = {
     git = {
@@ -20,6 +20,9 @@
     };
     gh = {
       enable = true;
+      extensions = [
+        pkgs.gh-copilot
+      ];
     };
     gh-dash = {
       enable = false;

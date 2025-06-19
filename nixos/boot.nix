@@ -6,10 +6,10 @@
 }:
 {
   boot = {
-    # extraModulePackages = [
-    # pkgs.linuxKernel.packages.linux_zen.nvidiaPackages.latest
-    #   pkgs.linuxKernel.packages.linux_zen.lenovo-legion-module
-    # ];
+    extraModulePackages = [
+      # pkgs.linuxKernel.packages.linux_zen.nvidiaPackages.latest
+      pkgs.linuxKernel.packages.linux_zen.lenovo-legion-module
+    ];
     kernelPackages = pkgs.linuxKernel.packages.linux_zen;
     supportedFilesystems = [ "ntfs" ];
     loader = {

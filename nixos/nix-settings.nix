@@ -1,4 +1,4 @@
-{ inputs, ... }:
+{ inputs, lib, ... }:
 {
   nix.optimise.automatic = true;
   nix.settings = {

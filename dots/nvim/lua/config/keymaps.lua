@@ -15,9 +15,9 @@ map({ "n", "x" }, "<leader>h", ":noh<cr>", { desc = "Remove search highlight" })
 map("n", "<leader>r", ":set rnu!<cr>", { desc = "Relative Number toggle" })
 
 -- open mini files
-map("n", ",", function()
-  require("mini.files").open(vim.api.nvim_buf_get_name(0), true)
-end, { desc = "Open mini.files in current dir files" })
+-- map("n", ",", function()
+--   require("mini.files").open(vim.api.nvim_buf_get_name(0), true)
+-- end, { desc = "Open mini.files in current dir files" })
 
 -- Scrolling
 map("n", "<ScrollWheelUp>", "<C-y><C-y><C-y><C-y><C-y>")

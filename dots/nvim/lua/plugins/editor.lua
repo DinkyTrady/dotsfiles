@@ -2,6 +2,7 @@ local Util = require("lazyvim.util")
 return {
   {
     "SmiteshP/nvim-navic",
+    enabled = false,
     lazy = true,
     event = "LazyFile",
     init = function()
@@ -90,8 +91,8 @@ return {
     "nvim-lualine/lualine.nvim",
     opts = function(_, opts)
       table.remove(opts.sections.lualine_c)
-      table.remove(opts.sections.lualine_c)
-      table.remove(opts.sections.lualine_c)
+      -- table.remove(opts.sections.lualine_c)
+      -- table.remove(opts.sections.lualine_c)
     end,
   },
   {

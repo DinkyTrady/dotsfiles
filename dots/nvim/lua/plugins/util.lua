@@ -1,25 +1,4 @@
 return {
-  -- {
-  --   "max397574/better-escape.nvim",
-  --   enable = false,
-  --   event = "InsertEnter",
-  --   opts = {
-  --     mappings = {
-  --       i = {
-  --         k = {
-  --           k = "<Esc>",
-  --           j = "<Esc>",
-  --         },
-  --       },
-  --       c = {
-  --         k = {
-  --           k = "<Esc>",
-  --           j = "<Esc>",
-  --         },
-  --       },
-  --     },
-  --   },
-  -- },
   {
     "echasnovski/mini.indentscope",
     version = false,
@@ -48,7 +27,17 @@ return {
       watermark = "",
       has_line_number = true,
       -- has_breadcrumbs = true,
-      save_path = os.getenv("XDG_PICTURES_DIR") or (os.getenv("HOME") .. "/Pictures/codesnap")
-    }
-  }
+      save_path = os.getenv("XDG_PICTURES_DIR") or (os.getenv("HOME") .. "/Pictures/codesnap"),
+    },
+  },
+  {
+    "pocco81/true-zen.nvim",
+    cmd = {
+      "TZAtaraxis",
+      "TZMinimalist",
+      "TZFocus",
+      "TZNarrow",
+    },
+    opts = {},
+  },
 }

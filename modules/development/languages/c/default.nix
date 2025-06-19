@@ -2,7 +2,7 @@
 {
   environment.systemPackages = with pkgs; [
     gcc # dunno
-    clang # dunno
+    # clang # dunno
     clang-tools
 
     gnumake

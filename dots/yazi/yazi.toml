@@ -1,5 +1,6 @@
-[manager]
+[mgr]
 show_hidden = true
+linemode = "size_mtime"
 
 [[plugin.prepend_fetchers]]
 id = "git"

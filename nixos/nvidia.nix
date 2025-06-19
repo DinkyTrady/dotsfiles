@@ -9,7 +9,7 @@
     };
 
     nvidia = {
-      open = false;
+      open = true;
       package = pkgs.linuxPackages_zen.nvidiaPackages.latest;
 
       modesetting.enable = true;

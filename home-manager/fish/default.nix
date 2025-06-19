@@ -13,6 +13,10 @@ in
         # enable_transience
 
         fish_add_path ~/DevPkg/.npm/bin
+        fish_add_path ~/.bun/bin
+
+        set -g fish_key_bindings fish_vi_key_bindings
+        set fish_cursor_insert block
       '';
     plugins = [
       {

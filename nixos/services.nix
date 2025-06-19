@@ -1,4 +1,45 @@
 { pkgs, lib, ... }:
+let
+  json = pkgs.formats.json { };
+  pw_rnnoise_config = {
+    "context.modules" = [
+      {
+        "name" = "libpipewire-module-filter-chain";
+        "args" = {
+          "node.description" = "Noise Canceling source";
+          "media.name" = "Noise Canceling source";
+          "filter.graph" = {
+            "nodes" = [
+              {
+                "type" = "ladspa";
+                "name" = "rnnoise";
+                "plugin" = "${pkgs.rnnoise-plugin}/lib/ladspa/librnnoise_ladspa.so";
+                "label" = "noise_suppressor_stereo";
+                "control" = {
+                  "VAD Threshold (%)" = 50.0;
+                };
+              }
+            ];
+          };
+          "audio.position" = [
+            "FL"
+            "FR"
+          ];
+          "capture.props" = {
+            "node.name" = "effect_input.rnnoise";
+            "node.passive" = true;
+            "audio.rate" = 48000;
+          };
+          "playback.props" = {
+            "node.name" = "effect_output.rnnoise";
+            "media.class" = "Audio/Source";
+            "audio.rate" = 48000;
+          };
+        };
+      }
+    ];
+  };
+in
 {
   services = {
     # enabling x11
@@ -25,13 +66,10 @@
     # display manager for login
     displayManager = {
       enable = lib.mkDefault false;
-      defaultSession = "hyprland"; # set default sessions to hyprland
-      ly = {
-        enable = false;
-      };
+      ly.enable = false;
       # not working i dunno why
       sddm = {
-        enable = true;
+        enable = false;
         wayland = {
           enable = true;
           compositor = "weston";
@@ -46,6 +84,7 @@
       jack.enable = true;
       alsa.enable = true;
       alsa.support32Bit = true;
+      extraConfig.pipewire."99-input-denoising" = pw_rnnoise_config;
     };
 
     # Keyboard mapper
@@ -65,6 +104,8 @@
     # touchpad support, is it used?
     libinput.enable = true;
 
+    udisks2.enable = true;
+
     # Some programs need SUID wrappers, can be configured further or are
     # started in user sessions.
     # mtr.enable = true;
@@ -76,4 +117,6 @@
     # ssh not for now
     # openssh.enable = true;
   };
+
+  security.rtkit.enable = true;
 }

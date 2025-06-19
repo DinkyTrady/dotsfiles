@@ -8,6 +8,9 @@ return {
       completion = {
         documentation = { auto_show_delay_ms = 100 },
       },
+      signature = {
+        enabled = true,
+      },
       keymap = {
         preset = "none",
         -- tab for snippet
@@ -86,5 +89,14 @@ return {
     event = { "InsertEnter", "CmdlineEnter" },
     branch = "v0.6", --recomended as each new version will have breaking changes
     opts = {},
+  },
+  {
+    "OXY2DEV/markview.nvim",
+    opts = {
+      preview = {
+        filetypes = { "markdown", "codecompanion" },
+        ignore_buftypes = {},
+      },
+    },
   },
 }

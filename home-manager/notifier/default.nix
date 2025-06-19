@@ -28,9 +28,11 @@
 
   services.mako = {
     enable = true;
-    defaultTimeout = 15000;
-    height = 300;
-    font = lib.mkForce "monospace 14";
-    iconPath = "${pkgs.tela-icon-theme}/share/icons/hicolor";
+    settings = {
+      defaultTimeout = "15000";
+      height = "300";
+      font = lib.mkForce "monospace 14";
+      iconPath = "${pkgs.tela-icon-theme}/share/icons/hicolor";
+    };
   };
 }

@@ -7,7 +7,7 @@ end
 local jdtls_path = os.getenv("JDTLS")
 local config_dir = vim.fn.expand("~/.cache/jdtls/config")
 local data_dir = vim.fn.expand("~/.cache/jdtls/workspace/") .. vim.fn.fnamemodify(vim.fn.getcwd(), ":p:h:t")
--- local lombok = os.getenv("LOMBOK") .. "/share/java/lombok.jar"
+local lombok = os.getenv("LOMBOK") .. "/share/java/lombok.jar"
 
 local capabilites = vim.lsp.protocol.make_client_capabilities()
 capabilites.textDocument.completion.completionItem = {
@@ -39,13 +39,13 @@ local config = {
     "--add-opens",
     "java.base/java.lang=ALL-UNNAMED",
     "-jar",
-    jdtls_path .. "/share/java/jdtls/plugins/org.eclipse.equinox.launcher_1.6.1000.v20250131-0606.jar",
+    jdtls_path .. "/share/java/jdtls/plugins/org.eclipse.equinox.launcher_1.7.0.v20250331-1702.jar",
     "-configuration",
     config_dir,
     "-data",
     data_dir,
-    -- "-javaagent",
-    -- lombok,
+    "-javaagent",
+    lombok,
   },
 
   root_dir = jdtls.setup.find_root({ ".git", "mvnw", "gradlew", "pom.xml" }),
@@ -55,9 +55,9 @@ local config = {
   capabilites = capabilites,
   -- capabilites = require("cmp_nvim_lsp").default_capabilities(capabilites),
   -- not using it for now since it need other plugin
-  -- init_options = {
-  --   bundles = {}
-  -- }
+  init_options = {
+    bundles = {},
+  },
 }
 
 jdtls.start_or_attach(config)

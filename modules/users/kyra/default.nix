@@ -22,7 +22,11 @@ in
   config = lib.mkIf cfg.enable {
     users.users.${cfg.userName} = {
       isNormalUser = true;
-      extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
+      extraGroups = [
+        "wheel"
+        "libvirtd"
+        "docker"
+      ]; # Enable ‘sudo’ for the user.
       shell = pkgs.fish;
     };
   };
