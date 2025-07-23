@@ -21,7 +21,8 @@
 > Remember to backup folder before installing
 
 ```sh
-git clone --depth 1 https://github.com/DinkyTrady/dots.git
-cd ./dots
-stow .
+git clone --depth 1 https://github.com/DinkyTrady/dotsfiles.git
+
+# this command will stowing all the file/folder
+./dotsfiles/.local/bin/dotstow
 ```
