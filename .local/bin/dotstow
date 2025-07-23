@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+DOTS_PATH="$(fd --type d '^dotsfiles$' "$HOME" | head -n 1)"
+
+if [ -z "$DOTS_PATH" ] || [ ! -d "$DOTS_PATH" ]; then
+  echo "dotsfiles directory not found"
+  exit 1
+fi
+
+STOW_DIR="$(dirname "$DOTS_PATH")"
+PACKAGE_NAME="dotsfiles"
+TARGET_DIR="$HOME"
+
+stow -d "$STOW_DIR" -t "$TARGET_DIR" -R "$PACKAGE_NAME"
