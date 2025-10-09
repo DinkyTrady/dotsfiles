@@ -1,0 +1,22 @@
+services:
+  forgerjo-git:
+    image: codeberg.org/forgejo/forgejo:12.0.0
+    container_name: forgerjo-git
+    environment:
+      - USER_UID=1000
+      - USER_GID=1000
+    restart: unless-stopped
+    networks:
+      - cloudflare-tunnel-networks
+    volumes:
+      - ./data:/data:rw
+      - /etc/timezone:/etc/timezone:ro
+      - /etc/localtime:/etc/localtime:ro
+    ports:
+      - "90:3000"
+      - "2221:22"
+
+networks:
+  cloudflare-tunnel-networks:
+    name: cloudflare-tunnel-networks
+    external: true

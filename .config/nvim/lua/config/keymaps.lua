@@ -14,21 +14,18 @@ map({ "n", "x" }, "<leader>h", ":noh<cr>", { desc = "Remove search highlight" })
 
 map("n", "<leader>r", ":set rnu!<cr>", { desc = "Relative Number toggle" })
 
-map("n", "<leader>gg", function()
-  require("lazyvim.util").terminal.open(
-    { "gitui" },
-    { cwd = require("lazyvim.util").root.get(), esc_esc = false, ctrl_hjkl = false }
-  )
-end, { desc = "gitui (root dir)" })
-map("n", "<leader>gG", function()
-  require("lazyvim.util").terminal.open(
-    { "gitui" },
-    { cwd = require("lazyvim.util").root.get(), esc_esc = false, ctrl_hjkl = false }
-  )
-end, { desc = "gitui (root dir)" })
+-- open mini files
+-- map("n", ",", function()
+--   require("mini.files").open(vim.api.nvim_buf_get_name(0), true)
+-- end, { desc = "Open mini.files in current dir files" })
 
+-- Scrolling
 map("n", "<ScrollWheelUp>", "<C-y><C-y><C-y><C-y><C-y>")
 map("n", "<ScrollWheelDown>", "<C-e><C-e><C-e><C-e><C-e>")
+
+-- n/N to zz
+map("n", "n", "nzz")
+map("n", "N", "Nzz")
 
 -- vim.keymap.del("n", "<leader>gg")
 -- vim.keymap.d;el("n", "<leader>gG")

@@ -1,91 +1,164 @@
+[env]
+TERM = "xterm-256color"
+WINIT_X11_SCALE_FACTOR = "1"
+
 [window]
-# opacity = 0.5
-blur = true
+dynamic_padding = true
+decorations = "full"
+title = "Alacritty@CachyOS"
+opacity = 0.8
+decorations_theme_variant = "Dark"
+
+[window.dimensions]
+columns = 100
+lines = 30
+
+[window.class]
+instance = "Alacritty"
+general = "Alacritty"
+
+[scrolling]
+history = 10000
+multiplier = 3
+
+[colors]
+draw_bold_text_with_bright_colors = true
+
+[colors.primary]
+background = "0x2E3440"
+foreground = "0xD8DEE9"
+
+[colors.normal]
+black = "0x3B4252"
+red = "0xBF616A"
+green = "0xA3BE8C"
+yellow = "0xEBCB8B"
+blue = "0x81A1C1"
+magenta = "0xB48EAD"
+cyan = "0x88C0D0"
+white = "0xE5E9F0"
+
+[colors.bright]
+black = "0x4C566A"
+red = "0xBF616A"
+green = "0xA3BE8C"
+yellow = "0xEBCB8B"
+blue = "0x81A1C1"
+magenta = "0xB48EAD"
+cyan = "0x8FBCBB"
+white = "0xECEFF4"
 
 [font]
-normal = { family = "JetBrainsMono Nerd Font", style = "Regular" }
 size = 12
 
+[font.normal]
+family = "monospace"
+style = "Regular"
+
+[font.bold]
+family = "monospace"
+style = "Bold"
+
+[font.italic]
+family = "monospace"
+style = "Italic"
+
+[font.bold_italic]
+family = "monospace"
+style = "Bold Italic"
+
+[selection]
+semantic_escape_chars = ",│`|:\"' ()[]{}<>\t"
+save_to_clipboard = true
+
 [cursor]
-style = { blinking = "on" }
-blink_interval = 350
+style = "Underline"
+vi_mode_style = "None"
+unfocused_hollow = true
+thickness = 0.15
 
 [mouse]
 hide_when_typing = true
 
+[[mouse.bindings]]
+mouse = "Middle"
+action = "PasteSelection"
 
-[colors.primary]
-background = "#1e1e2e"
-foreground = "#cdd6f4"
-dim_foreground = "#7f849c"
-bright_foreground = "#cdd6f4"
+[keyboard]
+[[keyboard.bindings]]
+key = "Paste"
+action = "Paste"
 
-[colors.cursor]
-text = "#1e1e2e"
-cursor = "#f5e0dc"
+[[keyboard.bindings]]
+key = "Copy"
+action = "Copy"
 
-[colors.vi_mode_cursor]
-text = "#1e1e2e"
-cursor = "#b4befe"
+[[keyboard.bindings]]
+key = "L"
+mods = "Control"
+action = "ClearLogNotice"
 
-[colors.search.matches]
-foreground = "#1e1e2e"
-background = "#a6adc8"
+[[keyboard.bindings]]
+key = "L"
+mods = "Control"
+mode = "~Vi"
+chars = "\f"
 
-[colors.search.focused_match]
-foreground = "#1e1e2e"
-background = "#a6e3a1"
+[[keyboard.bindings]]
+key = "PageUp"
+mods = "Shift"
+mode = "~Alt"
+action = "ScrollPageUp"
 
-[colors.footer_bar]
-foreground = "#1e1e2e"
-background = "#a6adc8"
+[[keyboard.bindings]]
+key = "PageDown"
+mods = "Shift"
+mode = "~Alt"
+action = "ScrollPageDown"
 
-[colors.hints.start]
-foreground = "#1e1e2e"
-background = "#f9e2af"
+[[keyboard.bindings]]
+key = "Home"
+mods = "Shift"
+mode = "~Alt"
+action = "ScrollToTop"
 
-[colors.hints.end]
-foreground = "#1e1e2e"
-background = "#a6adc8"
+[[keyboard.bindings]]
+key = "End"
+mods = "Shift"
+mode = "~Alt"
+action = "ScrollToBottom"
 
-[colors.selection]
-text = "#1e1e2e"
-background = "#f5e0dc"
+[[keyboard.bindings]]
+key = "V"
+mods = "Control|Shift"
+action = "Paste"
 
-[colors.normal]
-black = "#45475a"
-red = "#f38ba8"
-green = "#a6e3a1"
-yellow = "#f9e2af"
-blue = "#89b4fa"
-magenta = "#f5c2e7"
-cyan = "#94e2d5"
-white = "#bac2de"
+[[keyboard.bindings]]
+key = "C"
+mods = "Control|Shift"
+action = "Copy"
 
-[colors.bright]
-black = "#585b70"
-red = "#f38ba8"
-green = "#a6e3a1"
-yellow = "#f9e2af"
-blue = "#89b4fa"
-magenta = "#f5c2e7"
-cyan = "#94e2d5"
-white = "#a6adc8"
+[[keyboard.bindings]]
+key = "F"
+mods = "Control|Shift"
+action = "SearchForward"
 
-[colors.dim]
-black = "#45475a"
-red = "#f38ba8"
-green = "#a6e3a1"
-yellow = "#f9e2af"
-blue = "#89b4fa"
-magenta = "#f5c2e7"
-cyan = "#94e2d5"
-white = "#bac2de"
+[[keyboard.bindings]]
+key = "B"
+mods = "Control|Shift"
+action = "SearchBackward"
 
-[[colors.indexed_colors]]
-index = 16
-color = "#fab387"
+[[keyboard.bindings]]
+key = "C"
+mods = "Control|Shift"
+mode = "Vi"
+action = "ClearSelection"
 
-[[colors.indexed_colors]]
-index = 17
-color = "#f5e0dc"
+[[keyboard.bindings]]
+key = "Key0"
+mods = "Control"
+action = "ResetFontSize"
+
+[general]
+live_config_reload = true
+working_directory = "None"

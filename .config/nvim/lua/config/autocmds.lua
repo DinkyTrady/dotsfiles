@@ -2,33 +2,62 @@
 -- Default autocmds that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/autocmds.lua
 -- Add any additional autocmds here
 local autocmd = vim.api.nvim_create_autocmd
-autocmd({ "FileType" }, {
-  pattern = { "lua", "html", "css" },
-  callback = function()
-    vim.b.autoformat = false
-  end,
-})
+local augroup = function(name)
+  vim.api.nvim_create_augroup("user_" .. name, { clear = true })
+end
 
 autocmd("LspAttach", {
   callback = function()
     require("config.lsp-settings")
+    vim.api.nvim_set_hl(0, "LspReferenceRead", { bg = "#303030", link = nil })
+    vim.api.nvim_set_hl(0, "LspReferenceText", { bg = "#303030", link = nil })
   end,
 })
-
-local status, lvim_util = pcall(require, "lazyvim.util")
-if not status then
-  return
-end
 
 vim.api.nvim_set_hl(0, "CursorLine", { bg = nil })
 vim.api.nvim_command("redraw")
 
-lvim_util.lsp.on_attach(function(client, buffer)
-  if client.supports_method("textDocument/documentSymbol") then
-    function sethl(bufnr, name, table)
-      vim.api.nvim_set_hl(bufnr, name, table)
-    end
+-- java indent
+autocmd("FileType", {
+  pattern = "java",
+  callback = function()
+    vim.opt_local.softtabstop = 4
+    vim.opt_local.tabstop = 4
+    vim.opt_local.shiftwidth = 4
+  end,
+})
 
-  end
-end)
--- "NavicIconsFile"         "NavicIconsModule"       "NavicIconsNamespace"    "NavicIconsPackage"      "NavicIconsClass"        "NavicIconsMethod"       "NavicIconsProperty"     "NavicIconsField"        "NavicIconsConstructor"  "NavicIconsEnum"         "NavicIconsInterface"    "NavicIconsFunction"     "NavicIconsVariable"     "NavicIconsConstant"     "NavicIconsString"       "NavicIconsNumber"       "NavicIconsBoolean"      "NavicIconsArray"        "NavicIconsObject"       "NavicIconsKey"          "NavicIconsNull"         "NavicIconsEnumMember"   "NavicIconsStruct"       "NavicIconsEvent"        "NavicIconsOperator"     "NavicIconsTypeParameter" "NavicText"              "NavicSeparator"         
+-- relative number
+local cmdgroup = augroup("CmdlineLineNr")
+local cmdline_debuonce_timer
+
+autocmd("CmdLineEnter", {
+  group = cmdgroup,
+  callback = function()
+    cmdline_debuonce_timer = vim.uv.new_timer()
+    ---@diagnostic disable-next-line: need-check-nil
+    cmdline_debuonce_timer:start(
+      100,
+      0,
+      vim.schedule_wrap(function()
+        if vim.o.number then
+          vim.o.relativenumber = false
+          vim.api.nvim__redraw({ statuscolumn = true })
+        end
+      end)
+    )
+  end,
+})
+
+autocmd("CmdLineLeave", {
+  group = cmdgroup,
+  callback = function()
+    if cmdline_debuonce_timer then
+      cmdline_debuonce_timer:stop()
+      cmdline_debuonce_timer = nil
+    end
+    if vim.o.number then
+      vim.o.relativenumber = true
+    end
+  end,
+})

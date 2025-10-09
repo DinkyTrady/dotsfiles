@@ -1,0 +1,44 @@
+Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-surround'
+Plug 'machakann/vim-highlightedyank'
+Plug 'justinmk/vim-sneak'
+Plug 'preservim/nerdtree'
+
+set NERDtree
+set commentary
+set surround
+set which-key
+set peekaboo
+set mini-ai
+set ideajoin
+
+set notimeout
+set number
+set relativenumber
+
+
+nnoremap - :NERDTreeToggle<cr>
+nnoremap <space>x :bd<cr>
+nnoremap L :tabnext<cr>
+nnoremap H :tabprev<cr>
+
+nmap gff <Action>(GotoFile)
+nmap gfr <Action>(RecentFiles)
+nmap gfa <Action>(GotoAction)
+nmap gfw <Action>(TextSearchAction)
+
+nmap gra <Action>(ShowIntentionActions)
+nmap grd <Action>(GotoDeclaration)
+nmap grt <Action>(GotoTypeDeclaration)
+nmap gri <Action>(GotoImplementation)
+nmap K <Action>(ShowHoverInfo)
+nmap <space>f <Action>(ReformatCode)
+
+nmap ]d <Action>(GotoNextError)
+nmap [d <Action>(GotoPreviousError)
+
+nmap <space>p "+p
+nmap <space>P "+P
+
+nmap <space>d "+d
+

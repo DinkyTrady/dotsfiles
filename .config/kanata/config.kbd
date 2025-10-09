@@ -1,5 +1,7 @@
 (defsrc
-  esc caps ;
+  esc caps 
+  a s d f
+  j k l ;
 )
 
 (defvar
@@ -8,11 +10,22 @@
 )
 
 (defalias
-  capsesc (tap-hold-release $tap-time $hold-time caps esc)
-  escctrl (tap-hold-release $tap-time $hold-time esc lctrl)
-  ; (tap-hold-release $tap-time $hold-time ; rmet)
+  capsesc (multi f24 (tap-hold $tap-time $hold-time caps esc))
+  escctrl (multi f24 (tap-hold $tap-time $hold-time esc lctrl))
+
+  a (multi f24 (tap-hold $tap-time $hold-time a lalt))
+  s (multi f24 (tap-hold $tap-time $hold-time s lshift))
+  d (multi f24 (tap-hold $tap-time $hold-time d lmeta))
+  f (multi f24 (tap-hold $tap-time $hold-time f lctrl))
+
+  j (multi f24 (tap-hold $tap-time $hold-time j rctrl))
+  k (multi f24 (tap-hold $tap-time $hold-time k rmeta))
+  l (multi f24 (tap-hold $tap-time $hold-time l rshift))
+  ; (multi f24 (tap-hold $tap-time $hold-time ; ralt))
 )
 
 (deflayer base
-  @capsesc @escctrl @;
+  @capsesc @escctrl 
+  @a @s @d @f 
+  @j @k @l @;
 )

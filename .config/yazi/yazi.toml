@@ -1,12 +1,21 @@
-[manager]
-show_hidden=true
+[mgr]
+show_hidden = true
+linemode = "size_mtime"
 
 [[plugin.prepend_fetchers]]
-id   = "git"
+id = "git"
 name = "*"
-run  = "git"
+run = "git"
 
 [[plugin.prepend_fetchers]]
-id   = "git"
+id = "git"
 name = "*/"
-run  = "git"
+run = "git"
+
+[opener]
+extract = [
+	{ run = 'ya pub extract --list "$@"', desc = "Extract here", for = "unix" }
+]
+# edit = [
+#   { run= 'NVIM_APPNAME=nvim-minim nvim "$@"', block = true, for = "unix" }
+# ]

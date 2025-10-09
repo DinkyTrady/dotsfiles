@@ -47,3 +47,6 @@ o.completeopt = { "menuone", "noselect" }
 for name, value in pairs(settings) do
   o[name] = value
 end
+
+-- vim.g.lazyvim_picker = "telescope" -- set into telescope
+vim.g.lazyvim_blink_main = true -- Set blink for main completion

@@ -1,69 +1,8 @@
 local Util = require("lazyvim.util")
 return {
-  -- {
-  --   "nvim-neo-tree/neo-tree.nvim",
-  --   branch = "v3.x",
-  --   opts = {
-  --     source_selector = {
-  --       winbar = true,
-  --     },
-  --     window = {
-  --       width = 30,
-  --       mappings = {
-  --         -- disable default mappings
-  --         ["<space>"] = "",
-  --         ["<bs>"] = "",
-  --         -- custom mappings
-  --         [";"] = {
-  --           "toggle_node",
-  --           nowait = true,
-  --         },
-  --         ["-"] = "navigate_up",
-  --         ["p"] = "paste_from_clipboard",
-  --       },
-  --     },
-  --     default_component_configs = {
-  --       icon = {
-  --         default = "󰡯 ",
-  --       },
-  --     },
-  --     filesystem = {
-  --       filtered_items = {
-  --         visible = true, -- when true, they will just be displayed differently than normal items
-  --         hide_by_name = {
-  --           "node_modules",
-  --           ".git",
-  --         },
-  --         hide_dotfiles = false,
-  --         hide_gitignored = false,
-  --         hide_hidden = true,
-  --       },
-  --       window = {
-  --         mappings = {
-  --           -- disable mappings
-  --           ["[g"] = "",
-  --           ["]g"] = "",
-  --           -- custom mappings
-  --           ["gp"] = "prev_git_modified",
-  --           ["gn"] = "next_git_modified",
-  --         },
-  --       },
-  --     },
-  --     git_status = {
-  --       window = {
-  --         mappings = {
-  --           -- disable mappings
-  --           ["-"] = "",
-  --           ["gg"] = "",
-  --           --custom mappings
-  --           ["cp"] = "git_commit_and_push",
-  --         },
-  --       },
-  --     },
-  --   },
-  -- },
   {
     "SmiteshP/nvim-navic",
+    enabled = false,
     lazy = true,
     event = "LazyFile",
     init = function()
@@ -130,66 +69,31 @@ return {
     end,
   },
   {
-    "nvim-telescope/telescope.nvim",
-    dependencies = {
-      "nvim-telescope/telescope-file-browser.nvim",
-    },
+    "ibhagwan/fzf-lua",
     keys = {
-      { ";w", Util.pick("live_grep"), desc = "Grep (root dir)" },
-      -- find
-      { ";d", "<Cmd>Telescope file_browser<Cr>", desc = "File Browser" },
-      { ";b", "<cmd>Telescope buffers sort_mru=true sort_lastused=true<cr>", desc = "Buffers" },
+      { ";b", "<cmd>FzfLua buffers sort_mru=true sort_lastused=true<cr>", desc = "Buffers" },
       { ";c", Util.pick.config_files(), desc = "Find Config File" },
-      { ";f", Util.pick("files", { find_command = { "fd" } }), desc = "Find Files (root dir)" },
-      { ";F", Util.pick("files", { find_command = { "fd" }, cwd = nil, hidden = true }), desc = "Find Files (cwd)" },
-      { ";r", "<cmd>Telescope oldfiles<cr>", desc = "Recent" },
-      { ";R", Util.pick("oldfiles", { cwd = vim.loop.cwd() }), desc = "Recent (cwd)" },
-      -- search
-      { ";E", "<cmd>Telescope diagnostics bufnr=0<cr>", desc = "Document diagnostics" },
-      { ";e", "<cmd>Telescope diagnostics<cr>", desc = "Workspace diagnostics" },
-      { ";W", Util.pick("live_grep", { cwd = nil, hidden = true }), desc = "Grep (cwd)" },
-      { ";h", "<cmd>Telescope help_tags<cr>", desc = "Help Pages" },
-      { ";m", "<cmd>Telescope marks<cr>", desc = "Jump to Mark" },
+      { ";C", Util.pick("colorschemes"), desc = "Change Colorschemes" },
+      { ";f", Util.pick("files"), desc = "Find Files (root dir)" },
+      -- stylua: ignore
+      { ";F", Util.pick("files", { root = false }), desc = "Find Files (cwd)" },
+      { ";r", "<cmd>FzfLua oldfiles<cr>", desc = "Recent" },
+      { ";R", Util.pick("oldfiles", { cwd = vim.uv.cwd() }), desc = "Recent (cwd)" },
+      { ";E", "<cmd>FzfLua diagnostics_document<cr>", desc = "Document diagnostics" },
+      { ";e", "<cmd>FzfLua diagnostics_workspace<cr>", desc = "Workspace diagnostics" },
+      { ";w", Util.pick("live_grep"), desc = "Grep (root dir)" },
+      { ";W", Util.pick("live_grep", { root = false }), desc = "Grep (cwd)" },
+      { ";h", Util.pick("helptags"), desc = "Help Pages" },
+      { ";m", Util.pick("marks"), desc = "Jump to Mark" },
     },
-    config = function()
-      local tls = require("telescope")
-      tls.setup({
-        defaults = {
-          sorting_strategy = "ascending",
-          layout_strategy = "flex",
-          layout_config = { prompt_position = "top" },
-          hidden = true,
-          mappings = {
-            n = {
-              ["q"] = require("telescope.actions").close,
-            },
-          },
-        },
-        extensions = {
-          file_browser = {
-            initial_mode = "normal",
-            hidden = true,
-            preview = false,
-            mappings = {
-              n = {
-                ["h"] = tls.extensions.file_browser.actions.goto_parent_dir,
-                ["l"] = require("telescope.actions").select_default,
-              },
-            },
-          },
-        },
-      })
-
-      tls.load_extension("file_browser")
-    end,
   },
   {
     "nvim-lualine/lualine.nvim",
     opts = function(_, opts)
       table.remove(opts.sections.lualine_c)
-      table.remove(opts.sections.lualine_c)
-      table.remove(opts.sections.lualine_c)
-    end
+      -- table.remove(opts.sections.lualine_c)
+      -- table.remove(opts.sections.lualine_c)
+    end,
   },
   {
     "lewis6991/gitsigns.nvim",

@@ -1,0 +1,17 @@
+services:
+  cloudflaretunnel:
+    container_name: cloudflare-tunnel
+    image: cloudflare/cloudflared:latest
+    restart: unless-stopped
+    environment:
+      - TUNNEL_TOKEN=$TUNNEL_TOKEN
+    command: tunnel --no-autoupdate run
+    volumes:
+      - .:/etc/cloudflared
+    networks:
+      - cloudflare-tunnel-networks
+
+networks:
+  cloudflare-tunnel-networks:
+    name: cloudflare-tunnel-networks
+    external: false
