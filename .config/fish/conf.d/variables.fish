@@ -1,5 +1,5 @@
 # Set editor
-set -x EDITOR nvn
+set -x EDITOR nvim
 
 # Dev path
 set -Ux devpath "$HOME/DevPkg"
