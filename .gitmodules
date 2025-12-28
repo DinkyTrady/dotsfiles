@@ -2,3 +2,6 @@
 	path = .config/nvim-minim
 	url = https://github.com/DinkyTrady/nvim
 	branch = minimalist
+[submodule ".config/helix"]
+	path = .config/helix
+	url = git@github.com:DinkyTrady/helix.git
