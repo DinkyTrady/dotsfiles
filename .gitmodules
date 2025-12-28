@@ -1,0 +1,4 @@
+[submodule ".config/nvim-minim"]
+	path = .config/nvim-minim
+	url = https://github.com/DinkyTrady/nvim
+	branch = minimalist
