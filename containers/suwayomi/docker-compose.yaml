@@ -1,0 +1,26 @@
+services:
+  suwayomi:
+    image: ghcr.io/suwayomi/suwayomi-server:stable
+    container_name: suwayomi_server
+    user: 1000:1000
+    environment:
+      - TZ=Etc/UTC
+      - FLARESOLVERR_ENABLED=true
+      - FLARESOLVERR_URL=http://flaresolverr:8191
+      - EXTENSION_REPOS=[ "https://raw.githubusercontent.com/keiyoushi/extensions/repo/index.min.json" ]
+    volumes:
+      - ~/.local/share/Tachidesk:/home/suwayomi/.local/share/Tachidesk
+    ports:
+      - "4567:4567"
+    restart: unless-stopped
+    mem_limit: 2048M
+    cpus: 2.5
+
+  flaresolverr:
+    image: ghcr.io/thephaseless/byparr:latest
+    container_name: flaresolverr
+    environment:
+      - TZ=Etc/UTC # Use TZ database name from https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+    restart: unless-stopped
+    mem_limit: 256M
+    cpus: 0.5

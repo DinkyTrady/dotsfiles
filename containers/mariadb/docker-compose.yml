@@ -1,18 +1,29 @@
 services:
   db:
     image: mariadb
-    # environment:
-    #   MYSQL_ROOT_PASSWORD: abcd123
+    container_name: mariadb
+    environment:
+      # MYSQL_ROOT_PASSWORD: abcd123
+      MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
+    volumes:
+      - db_data:/var/lib/mysql
+    ports:
+      - 3306:3306
+    mem_limit: 2048M
+    restart: unless-stopped
 
   phpmyadmin:
     image: phpmyadmin:fpm-alpine
+    container_name: phpmyadmin
     environment:
       PMA_ARBITRARY: 1
     volumes:
       - phpmyadmin_files:/var/www/html
+    mem_limit: 512M
 
   phpmyadmin_web:
     image: nginx:alpine
+    container_name: phpmyadmin_web
     ports:
       - 9999:80
     volumes:
@@ -23,3 +34,4 @@ services:
 
 volumes:
   phpmyadmin_files:
+  db_data:
