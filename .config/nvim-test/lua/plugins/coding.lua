@@ -2,6 +2,10 @@ return {
   {
     "saghen/blink.cmp",
     enabled = true,
+    dependencies = {
+      "saghen/blink.compat",
+      "MattiasMTS/cmp-dbee",
+    },
     ---@module 'blink-cmp'
     ---@type blink.cmp.Config
     opts = {
