@@ -33,5 +33,10 @@ use = "yazi-rs/plugins:mount"
 rev = "de53d90"
 hash = "f10a14e823382d90fab5b3ee54cb38fe"
 
+[[plugin.deps]]
+use = "boydaihungst/gvfs"
+rev = "d4b8d83"
+hash = "8767b5484bc3e8fc23796b91e0a102b2"
+
 [flavor]
 deps = []

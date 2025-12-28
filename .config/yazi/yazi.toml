@@ -16,6 +16,9 @@ run = "git"
 extract = [
 	{ run = 'ya pub extract --list "$@"', desc = "Extract here", for = "unix" }
 ]
+edit = [
+  {run = 'nvim "$@"', block = true, for = "unix"}
+]
 # edit = [
 #   { run= 'NVIM_APPNAME=nvim-minim nvim "$@"', block = true, for = "unix" }
 # ]
